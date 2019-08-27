@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 from __future__ import print_function
 import requests
+import urllib3
+
 from examples.ap_down_eg import ap_down_eg
 from examples.ap_flap_eg import ap_flap_eg
 from examples.border_dhcp_eg import border_dhcp_eg
@@ -12,7 +14,11 @@ from argparse import ArgumentParser
 import logging
 
 import json
-requests.packages.urllib3.disable_warnings()
+
+#disabling insecure warning.
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+#requests.packages.urllib3.disable_warnings()
 URL="https://localhost:9000"
 
 def send_request(data):
